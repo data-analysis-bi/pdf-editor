@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.js": "/static/js/bundle.js",
+    "static/js/vendors-node_modules_pdfjs-dist_build_pdf_mjs.chunk.js": "/static/js/vendors-node_modules_pdfjs-dist_build_pdf_mjs.chunk.js",
+    "static/js/vendors-node_modules_tesseract_js_src_index_js.chunk.js": "/static/js/vendors-node_modules_tesseract_js_src_index_js.chunk.js",
+    "index.html": "/index.html",
+    "bundle.js.map": "/static/js/bundle.js.map",
+    "main.hot-update.js.map": "/main.ac77e6a674a7c11d007d.hot-update.js.map",
+    "vendors-node_modules_pdfjs-dist_build_pdf_mjs.chunk.js.map": "/static/js/vendors-node_modules_pdfjs-dist_build_pdf_mjs.chunk.js.map",
+    "vendors-node_modules_tesseract_js_src_index_js.chunk.js.map": "/static/js/vendors-node_modules_tesseract_js_src_index_js.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/bundle.js",
+    "main.ac77e6a674a7c11d007d.hot-update.js"
+  ]
+}
