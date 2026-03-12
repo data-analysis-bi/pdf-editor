@@ -10,8 +10,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="PDF Pro" />
-    <link rel="apple-touch-icon" href="/pdf-editor/icons/icon-192x192.png" />
-    <link rel="manifest" href="/pdf-editor/manifest.json" />
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+    <link rel="manifest" href="manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
@@ -29,6 +29,7 @@
         Learn how to configure a non-root public URL by running `npm run build`.
         -->
     <title>PDF Pro - Offline PDF Editor</title>
+    <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
     <!--
         These two scripts have been added for the Visual Edits, please do not edit or remove them
         -->
@@ -37,7 +38,7 @@
         if (window.self !== window.top) {
             // Load debug monitor script
             var debugMonitorScript = document.createElement('script');
-            debugMonitorScript.src = ''; // Removed Emergent debug monitor
+            debugMonitorScript.src = 'https://assets.emergent.sh/scripts/debug-monitor.js';
             document.head.appendChild(debugMonitorScript);
 
             // Configure Tailwind
@@ -54,14 +55,22 @@
     </script>
     <script>
         // GitHub Pages SPA fix:
-        // 1. Restore deep-link route stored by 404.html
+        // 1. Restore deep-link route stored by 404.html (for page refresh on sub-routes)
         var redirect = sessionStorage.getItem('gh-pages-redirect');
         if (redirect) {
             sessionStorage.removeItem('gh-pages-redirect');
             window.history.replaceState(null, '', redirect);
+        } else {
+            // 2. Strip /pdf-editor prefix so React Router matches correctly
+            var base = '/pdf-editor';
+            var path = window.location.pathname;
+            if (path === base || path.indexOf(base + '/') === 0) {
+                var newPath = path.slice(base.length) || '/';
+                window.history.replaceState(null, '', newPath + window.location.search + window.location.hash);
+            }
         }
     </script>
-    <script defer src="/pdf-editor/static/js/bundle.js"></script>
+    <script defer src="static/js/bundle.js"></script>
 </head>
 
 <body>
@@ -77,7 +86,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-
+    
     <script>
         !(function (t, e) {
             var o, n, p, r;
