@@ -53,6 +53,23 @@
             document.head.appendChild(tailwindScript);
         }
     </script>
+    <script>
+        // GitHub Pages SPA fix:
+        // 1. Restore deep-link route stored by 404.html (for page refresh on sub-routes)
+        var redirect = sessionStorage.getItem('gh-pages-redirect');
+        if (redirect) {
+            sessionStorage.removeItem('gh-pages-redirect');
+            window.history.replaceState(null, '', redirect);
+        } else {
+            // 2. Strip /pdf-editor prefix so React Router matches correctly
+            var base = '/pdf-editor';
+            var path = window.location.pathname;
+            if (path === base || path.indexOf(base + '/') === 0) {
+                var newPath = path.slice(base.length) || '/';
+                window.history.replaceState(null, '', newPath + window.location.search + window.location.hash);
+            }
+        }
+    </script>
     <script defer src="static/js/bundle.js"></script>
 </head>
 
